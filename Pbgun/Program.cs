@@ -10,7 +10,7 @@ namespace Pbgun
     {
         static void Main(string[] args)
         {
-            PaintballGun gun = new PaintballGun();
+            PaintBallGun gun = new PaintBallGun(0, 16, false);
             while (true)
             {
                 Console.WriteLine($"{gun.Balls} balls, {gun.BallsLoaded} loaded");
@@ -19,7 +19,7 @@ namespace Pbgun
                 char key = Console.ReadKey().KeyChar;
                 if (key == ' ') Console.WriteLine($"Shooting returned {gun.Shoot()}");
                 else if (key == 'r') gun.Reload();
-                else if (key == '+') gun.Balls += PaintballGun.MAGAZINE_SIZE;
+                else if (key == '+') gun.Balls += gun.MagazineSize;
                 else if (key == 'q') return;
             }
         }
