@@ -13,15 +13,22 @@ namespace Pbgun
         private int balls = 0;
         private int ballsLoaded = 0;
 
-        public int GetBallsLoaded() { return ballsLoaded; }
-        public bool IsEmpty() { return ballsLoaded == 0; }
-        public int GetBalls() { return balls; }
-
-        public void SetBalls(int numberOfBalls)
+        public int BallsLoaded
         {
-            if (numberOfBalls > 0)
-                balls = numberOfBalls;
-            Reload();
+            get { return ballsLoaded; }
+            set { ballsLoaded = value; }
+        }
+
+        public bool IsEmpty() { return ballsLoaded == 0; }
+        public int Balls
+        {
+            get { return balls; }
+            set
+            {
+                if (value > 0)
+                    balls = value;
+                Reload();
+            }
         }
 
         public void Reload()
