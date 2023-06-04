@@ -10,7 +10,14 @@ namespace Pbgun
     {
         static void Main(string[] args)
         {
-            PaintBallGun gun = new PaintBallGun(0, 16, false);
+            int numberOfBalls = ReadInt(20, "Number of balls");
+            int magazineSize = ReadInt(16, "Magazine size");
+
+            Console.Write($"Loaded [false]: ");
+            bool.TryParse(Console.ReadLine(), out bool isLoaded);
+
+
+            PaintBallGun gun = new PaintBallGun(numberOfBalls, magazineSize, isLoaded);
             while (true)
             {
                 Console.WriteLine($"{gun.Balls} balls, {gun.BallsLoaded} loaded");
@@ -22,6 +29,24 @@ namespace Pbgun
                 else if (key == '+') gun.Balls += gun.MagazineSize;
                 else if (key == 'q') return;
             }
+        }
+
+        static int ReadInt(int lastUsedValue, string prompt)
+        {
+            Console.Write($"{prompt}[{lastUsedValue}]: ");
+            string value = Console.ReadLine();
+            if (int.TryParse(value, out int digit))
+            {
+                Console.WriteLine($"    using value {digit} ");
+                return digit;
+            }
+            else
+            {
+                Console.WriteLine($"     using default value {lastUsedValue} ");
+                return lastUsedValue;
+            }
+
+
         }
     }
 }
